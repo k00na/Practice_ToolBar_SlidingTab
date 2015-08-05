@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Practice_ToolBar_SlidingTab</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="app_title">Apps Title</string>
+
+</resources>

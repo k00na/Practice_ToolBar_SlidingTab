@@ -27,7 +27,7 @@ class PagerAdapterYo extends FragmentStatePagerAdapter {
 
         MainActivity mainActivity = new MainActivity();
 
-        aaa
+
 
         return tabs[position];
     }

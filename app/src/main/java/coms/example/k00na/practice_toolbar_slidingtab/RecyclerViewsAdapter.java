@@ -63,14 +63,15 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
     @Override
     public void onBindViewHolder(CardItem cardItem, int i) {
 
-        int imageResource = mList[i];
-        cardItem.personImage.setImageResource(imageResource);
+
+        cardItem.personImage.setImageResource(persons.get(i).getImgRes());
+        cardItem.personName.setText(persons.get(i).getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return mList.length;
+        return persons.size();
     }
 
 

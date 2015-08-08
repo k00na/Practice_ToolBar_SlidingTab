@@ -58,7 +58,7 @@ public class TheFragment extends Fragment {
 
 
         for(int i = 0; i<15; i++){
-            Person newPerson = new Person(icons[i & icons.length], names[i % names.length]);
+            Person newPerson = new Person(icons[i % icons.length], names[i % names.length]);
             data.add(newPerson);
         }
 
@@ -81,7 +81,7 @@ public class TheFragment extends Fragment {
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerview_xml_id);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RecyclerViewsAdapter(number);
+        mAdapter = new RecyclerViewsAdapter(getActivity(), getData(number));
         mRecyclerView.setAdapter(mAdapter);
 
         // TO DO: set the adapter for the mRecyclerView

@@ -22,6 +22,10 @@ public class Person {
         this.imgRes = img;
     }
 
+    public Person(){
+
+    }
+
 
     public Person(int img, String name){
         this.imgRes = img;

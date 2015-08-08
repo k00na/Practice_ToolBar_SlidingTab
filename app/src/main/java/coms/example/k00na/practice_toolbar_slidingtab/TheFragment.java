@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by k00na on 5.8.2015.
  */
@@ -16,6 +19,7 @@ public class TheFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
     private RecyclerView.Adapter mAdapter;
+    private DataClass dataClass = new DataClass();
 
 
     public static final String EXTRA_POSITION = "coms.example.k00na.practice_toolbar_slidingtab.position";
@@ -31,6 +35,34 @@ public class TheFragment extends Fragment {
         return fragment;
 
 
+    }
+
+    public List<Person> getData(int tabsNumber){
+
+        List<Person> data = new ArrayList<>();
+        int[] icons = new int[3];
+        String[] names = new String[3];
+
+        if(tabsNumber == 0) {
+            icons = dataClass.getScientists();
+            names = dataClass.getScientistsNames();
+        }
+        else if(tabsNumber == 1) {
+            icons = dataClass.getMusicians();
+            names = dataClass.getMusiciansNames();
+        }
+        else {
+            icons = dataClass.getPoliticians();
+            names = dataClass.getPoliticianNames();
+        }
+
+
+        for(int i = 0; i<15; i++){
+            Person newPerson = new Person(icons[i & icons.length], names[i % names.length]);
+            data.add(newPerson);
+        }
+
+        return data;
     }
 
 

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private SlidingTabLayout theTab;
     private ViewPager theViewPager;
     private PagerAdapterYo pagerAdapter;
-    private Context context = getApplicationContext();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +46,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar)findViewById(R.id.include_appbar_mainactivity);
+        theViewPager = (ViewPager)findViewById(R.id.viewPager_ID);
+        pagerAdapter = new PagerAdapterYo(getSupportFragmentManager());
+        theViewPager.setAdapter(pagerAdapter);
 
         setSupportActionBar(toolbar);
 
         theTab = (SlidingTabLayout)findViewById(R.id.slidingTabLayout_XML_ID);
-        theTab.setSelectedIndicatorColors(R.color.primaryText);
-        theViewPager = (ViewPager)findViewById(R.id.viewPager_ID);
-        pagerAdapter = new PagerAdapterYo(getSupportFragmentManager());
+        theTab.setCustomTabView(R.layout.custom_tab_view, R.id.tabText);
+        theTab.setDistributeEvenly(true);
 
-        theViewPager.setAdapter(pagerAdapter);
-        theTab.setViewPager(theViewPager);
+        theTab.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.accentColor);
+            }
+        });
+         theTab.setViewPager(theViewPager);
 
 
 
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     class PagerAdapterYo extends FragmentStatePagerAdapter {
 
-        private String[] tabs = {"TAB 1", "TAB 2", "TAB 3"};
+     //   private String[] tabs = {"TAB 1", "TAB 2", "TAB 3"};
         private int[] icons ={R.mipmap.ic_accessibility_black_24dp, R.mipmap.ic_face_black_24dp, R.mipmap.ic_perm_identity_black_24dp};
 
         public PagerAdapterYo(FragmentManager fm) {
@@ -108,15 +115,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return tabs.length;
+            return icons.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
 
-            Drawable drawable = ContextCompat.getDrawable(context, icons[position]);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), icons[position]);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
             ImageSpan imageSpan = new ImageSpan(drawable);
-            SpannableString spannableString = new SpannableString("");
+            SpannableString spannableString = new SpannableString(" ");
             spannableString.setSpan(imageSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             return spannableString;
@@ -133,7 +141,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public Context getContext() {
-        return context;
-    }
+
 }

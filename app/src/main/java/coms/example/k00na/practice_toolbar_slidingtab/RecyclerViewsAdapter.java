@@ -1,11 +1,15 @@
 package coms.example.k00na.practice_toolbar_slidingtab;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * Created by k00na on 5.8.2015.
@@ -14,7 +18,12 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
 
     private CardItem cardItem;
     int[] mList;
+    private Context mContext;
+    List<Person> persons = Collections.emptyList();
+    private LayoutInflater inflater;
+
     private ArrayList<String> arrayNames = new ArrayList<String>();
+
 
     private DataClass data = new DataClass();
 
@@ -34,12 +43,17 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
 
     }
 
+    public RecyclerViewsAdapter(Context context, List<Person> data){
+
+        this.mContext = context;
+        inflater = LayoutInflater.from(mContext);
+        this.persons = data;
+    }
 
 
     @Override
     public CardItem onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.cardview_layout, viewGroup, false);
+        View v = inflater.inflate(R.layout.cardview_layout, viewGroup, false);
 
         CardItem cardHolder = new CardItem(v);
 

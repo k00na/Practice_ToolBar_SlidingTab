@@ -11,8 +11,11 @@ public class DataClass {
     private String name;
 
     private int[] scientists = {R.drawable.isac_newton, R.drawable.einstein, R.drawable.darwin_2};
+    private String[] scientistsNames = {"Newton", "Einstein", "Darwin"};
     private int[] musicians = {R.drawable.snoop_dogg, R.drawable.gwen_stefani_2, R.drawable.ozzy_osbourne};
+    private String[] musiciansNames = {"Snoop", "Gwen Stefani", "Ozzy"};
     private int[] politicians = {R.drawable.tito, R.drawable.malcom_x, R.drawable.ghadafi};
+    private String[] politicianNames = {"Tito", "Malcom X", "Ghadafi"};
 
     public ImageView getImage() {
         return image;
@@ -52,5 +55,17 @@ public class DataClass {
 
     public void setPoliticians(int[] politicians) {
         this.politicians = politicians;
+    }
+
+    public String[] getScientistsNames() {
+        return scientistsNames;
+    }
+
+    public String[] getMusiciansNames() {
+        return musiciansNames;
+    }
+
+    public String[] getPoliticianNames() {
+        return politicianNames;
     }
 }

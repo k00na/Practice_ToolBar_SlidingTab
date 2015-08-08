@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 /**
  * Created by k00na on 5.8.2015.
  */
@@ -12,6 +14,8 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
 
     private CardItem cardItem;
     int[] mList;
+    private ArrayList<String> arrayNames = new ArrayList<String>();
+
     private DataClass data = new DataClass();
 
     public RecyclerViewsAdapter(int tabNum){
@@ -54,4 +58,10 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
     public int getItemCount() {
         return mList.length;
     }
+
+
+    public void addStuff(String name){
+
+        arrayNames.add(name);
+}
 }

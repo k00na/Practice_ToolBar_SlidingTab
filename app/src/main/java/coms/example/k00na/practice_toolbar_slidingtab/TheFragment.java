@@ -45,6 +45,7 @@ public class TheFragment extends Fragment {
         int number = bundle.getInt(EXTRA_POSITION);
 
 
+
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerview_xml_id);
         mRecyclerView.setLayoutManager(mLayoutManager);
 

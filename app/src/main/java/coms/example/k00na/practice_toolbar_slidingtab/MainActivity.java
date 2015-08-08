@@ -1,10 +1,13 @@
 package coms.example.k00na.practice_toolbar_slidingtab;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private SlidingTabLayout theTab;
     private ViewPager theViewPager;
     private PagerAdapterYo pagerAdapter;
+    private Context context = getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -88,9 +97,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    class PagerAdapterYo extends FragmentStatePagerAdapter {
+
+        private String[] tabs = {"TAB 1", "TAB 2", "TAB 3"};
+        private int[] icons ={R.mipmap.ic_accessibility_black_24dp, R.mipmap.ic_face_black_24dp, R.mipmap.ic_perm_identity_black_24dp};
+
+        public PagerAdapterYo(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return tabs.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            Drawable drawable = ContextCompat.getDrawable(context, icons[position]);
+            ImageSpan imageSpan = new ImageSpan(drawable);
+            SpannableString spannableString = new SpannableString("");
+            spannableString.setSpan(imageSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            return spannableString;
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+
+            TheFragment theFragment = new TheFragment();
+
+            return theFragment.getInstance(i);
+        }
 
 
+    }
 
-
-
+    public Context getContext() {
+        return context;
+    }
 }

@@ -16,12 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SubActivity"
-            android:label="SubActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="coms.example.k00na.practice_toolbar_slidingtab.MainActivity"></meta-data>
+        <activity
+            android:name=".SubActivity"
+            android:label="SubActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="coms.example.k00na.practice_toolbar_slidingtab.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".AddingPersonsActivity"
+            android:label="@string/title_activity_adding_persons" >
+        </activity>
     </application>
 
 </manifest>

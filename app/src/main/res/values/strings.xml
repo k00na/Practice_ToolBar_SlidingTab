@@ -5,5 +5,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="app_title">Apps Title</string>
+    <string name="title_activity_adding_persons">AddingPersonsActivity</string>
+    <string name="add_name">add a name...</string>
+    <string name="adding_a_new_person">Adding A New Person</string>
 
 </resources>

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +22,8 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
     private Context mContext;
     List<Person> persons = Collections.emptyList();
     private LayoutInflater inflater;
+    private int mTabsNumber;
+    private int counter = 0;
 
     private ArrayList<String> arrayNames = new ArrayList<String>();
 
@@ -43,11 +46,18 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
 
     }
 
-    public RecyclerViewsAdapter(Context context, List<Person> data){
+    public RecyclerViewsAdapter(Context context, List<Person> data, int tabNum){
 
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);
         this.persons = data;
+        this.mTabsNumber = tabNum;
+    }
+
+    // constructor for the AddNewPerson activity
+
+    public RecyclerViewsAdapter(int[] imageResources){
+
     }
 
 
@@ -67,6 +77,8 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
         cardItem.personImage.setImageResource(persons.get(i).getImgRes());
         cardItem.personName.setText(persons.get(i).getName());
 
+
+
     }
 
     @Override
@@ -74,9 +86,50 @@ class RecyclerViewsAdapter extends RecyclerView.Adapter<CardItem>{
         return persons.size();
     }
 
+    public void add(Person addPerson){
 
-    public void addStuff(String name){
+        //Person newPerson = new Person();
+        // tle sm si prišu gor, da bi lahka naredu Person kot parent Class in potem Scientist, Musician, Politician kot sub-class-e razreda Person... to bi bla dobra vaja
 
-        arrayNames.add(name);
-}
+
+        /*
+        if(mTabsNumber == 0){
+            newPerson.setImgRes(data.getScientists()[counter]);
+            newPerson.setName(data.getScientistsNames()[counter]);
+            if(counter  == 2)
+                counter = 0;
+            else
+                counter++;
+        }
+        else if(mTabsNumber == 1){
+            newPerson.setImgRes(data.getMusicians()[counter]);
+            newPerson.setName(data.getMusiciansNames()[counter]);
+            if(counter  == 2)
+                counter = 0;
+            else
+                counter++;
+
+        }
+        else if(mTabsNumber == 2){
+            newPerson.setImgRes(data.getPoliticians()[counter]);
+            newPerson.setName(data.getPoliticianNames()[counter]);
+            if(counter  == 2)
+                counter = 0;
+            else
+                counter++;
+
+        }
+
+        */
+        persons.add(addPerson);
+        notifyItemInserted(persons.size());
+       // notifyDataSetChanged();
+
+        //notifyItemInserted(persons.size());
+        //Toast.makeText(mContext, "Added " + newPerson.getName() + " at position " + persons.size(), Toast.LENGTH_LONG).show();
+
+
+
+    }
+
 }

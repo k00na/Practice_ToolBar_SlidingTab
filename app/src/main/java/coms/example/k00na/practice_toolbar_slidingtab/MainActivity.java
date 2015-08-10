@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.include_appbar_mainactivity);
         theViewPager = (ViewPager)findViewById(R.id.viewPager_ID);
+        theViewPager.setOffscreenPageLimit(3);
         pagerAdapter = new PagerAdapterYo(getSupportFragmentManager());
         theViewPager.setAdapter(pagerAdapter);
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     class PagerAdapterYo extends FragmentStatePagerAdapter {
 
-     //   private String[] tabs = {"TAB 1", "TAB 2", "TAB 3"};
+
         private int[] icons ={R.mipmap.ic_accessibility_black_24dp, R.mipmap.ic_face_black_24dp, R.mipmap.ic_perm_identity_black_24dp};
 
         public PagerAdapterYo(FragmentManager fm) {
@@ -137,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
 
             return theFragment.getInstance(i);
         }
+
+
 
 
     }
